@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Plane : MonoBehaviour
 {
     public float speed;
+    public SpriteRenderer Bullet;
+    public Transform firePoint;
+    public float fireTime;
 
     private Rigidbody2D rig;
     private Vector2 _direction;
+    private bool canFire = true;
 
     public Vector2 direction
     {
@@ -25,6 +31,12 @@ public class Plane : MonoBehaviour
     void Update()
     {
         OnInput();
+        if(Input.GetKeyDown(KeyCode.LeftShift) && canFire == true)
+        {
+            canFire = false;
+            Instantiate(Bullet, firePoint.position, firePoint.rotation );
+            Invoke("CDBullet", fireTime);
+        }
     }
 
     private void FixedUpdate() {
@@ -39,5 +51,10 @@ public class Plane : MonoBehaviour
     void OnMove() 
     {
         rig.MovePosition(rig.position + _direction * speed * Time.fixedDeltaTime);
+    }
+
+    void CDBullet()
+    {
+        canFire = true;
     }
 }
