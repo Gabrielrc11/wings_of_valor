@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Wings of Valor.sln"
+    "dotnet.defaultSolution": "wings_of_valor.sln"
 }

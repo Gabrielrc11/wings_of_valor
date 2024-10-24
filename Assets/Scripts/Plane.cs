@@ -31,7 +31,7 @@ public class Plane : MonoBehaviour
     void Update()
     {
         OnInput();
-        if(Input.GetKeyDown(KeyCode.LeftShift) && canFire == true)
+        if(Input.GetKeyDown(KeyCode.LeftControl) && canFire == true)
         {
             canFire = false;
             Instantiate(Bullet, firePoint.position, firePoint.rotation );
